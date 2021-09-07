@@ -27,10 +27,15 @@ export class HeroesListComponent implements OnInit{
      });
   }
 
-  displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters'];
+  displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
   
   @ViewChild('paginator')
   paginator!: MatPaginator;   
+
+  public createHeroe(){
+    console.log('----------> ', this.dataSource);
+    
+  }
 
 }
 
