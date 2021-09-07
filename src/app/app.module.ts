@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroesListModule } from './components/heroes-list/heroes-list.module';
+import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HeroesListModule } from './components/heroes-list/heroes-list.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HeroesListModule,
+    ConfirmDialogModule
   ],
   exports: [
   ],

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>DELETE HEROE</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>This action is not reversible!</h3>
+  <p>Are you sure?</p>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close(true)">YES</button>
+  <button mat-button (click)="close(false)" cdkFocusInitial>NO</button>
+</mat-dialog-actions>
