@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HeroesService } from '../../services/heroes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes-list',
@@ -17,7 +18,8 @@ export class HeroesListComponent implements OnInit{
 
   constructor(
     private heroesService: HeroesService,
-    public dialog: MatDialog){};
+    public dialog: MatDialog,
+    private router: Router){};
 
   ngOnInit(): void {
    this.heroesService.getHeroes('http://localhost:9080/heroes')
@@ -34,15 +36,10 @@ export class HeroesListComponent implements OnInit{
   @ViewChild('paginator')
   paginator!: MatPaginator;   
 
-  public createHeroe(){
-    console.log('----------> ', this.dataSource);
-    
+  public newEditHeroe(row: any){
+    this.router.navigate([`heroes-form/${row.name}`]);
   }
   
-  public editItem(row: any){
-    console.log('-----edit-----> ', row);
-
-  }
   public deleteItem(row: any){
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
 

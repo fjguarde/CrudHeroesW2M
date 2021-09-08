@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NewEditHeroesComponent } from './new-edit-heroes.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [NewEditHeroesComponent],
   imports: [
     CommonModule
   ]
