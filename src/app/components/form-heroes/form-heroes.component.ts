@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,7 +7,8 @@ import { Hero } from 'src/app/models/interfaces';
 @Component({
   selector: 'app-form-heroes',
   templateUrl: './form-heroes.component.html',
-  styleUrls: ['./form-heroes.component.scss']
+  styleUrls: ['./form-heroes.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FormHeroesComponent implements OnInit {
 
