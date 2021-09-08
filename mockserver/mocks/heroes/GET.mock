@@ -4,6 +4,7 @@ Content-Type: application/json; charset=utf-8
 {
    "heroes": [
       {
+            "id": "0",
             "name":"Batman", 
             "publisher":"DC Comics", 
             "alter_ego":"Bruce Wayne",
@@ -11,6 +12,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Bruce Wayne"
       },
       {
+            "id": "1",
             "name":"Superman", 
             "publisher":"DC Comics", 
             "alter_ego":"Kal-El",
@@ -18,6 +20,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Kal-El"
       },
       {
+            "id": "2",
             "name":"Flash", 
             "publisher":"DC Comics", 
             "alter_ego":"Jay Garrick",
@@ -25,6 +28,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Jay Garrick, Barry Allen, Wally West, Bart Allen"
       },
       {
+            "id": "3",
             "name":"Green Lantern", 
             "publisher":"DC Comics", 
             "alter_ego":"Alan Scott",
@@ -32,6 +36,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz"
       },
       {
+            "id": "4",
             "name":"Green Arrow", 
             "publisher":"DC Comics", 
             "alter_ego":"Oliver Queen",
@@ -39,6 +44,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Oliver Queen"
       },
       {
+            "id": "5",
             "name":"Wonder Woman", 
             "publisher":"DC Comics", 
             "alter_ego":"Princess Diana",
@@ -46,6 +52,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Princess Diana"
       },
       {
+            "id": "6",
             "name":"Martian Manhunter", 
             "publisher":"DC Comics", 
             "alter_ego":"J'onn J'onzz",
@@ -53,6 +60,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Martian Manhunter"
       },
       {
+            "id": "7",
             "name":"Robin/Nightwing", 
             "publisher":"DC Comics", 
             "alter_ego":"Dick Grayson",
@@ -60,6 +68,7 @@ Content-Type: application/json; charset=utf-8
             "characters":"Dick Grayson"
       },
       {
+            "id": "8",
             "name":"Blue Beetle", 
             "publisher":"DC Comics", 
             "alter_ego":"Dan Garret",

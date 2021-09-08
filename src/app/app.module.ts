@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroesListModule } from './components/heroes-list/heroes-list.module';
 import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
-import { NewEditHeroesModule } from './components/new-edit-heroes/new-edit-heroes.module';
+import { FormHeroesModule } from './components/form-heroes/form-heroes.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { NewEditHeroesModule } from './components/new-edit-heroes/new-edit-heroe
     BrowserAnimationsModule,
     HeroesListModule,
     ConfirmDialogModule,
-    NewEditHeroesModule
+    FormHeroesModule
   ],
   exports: [
   ],

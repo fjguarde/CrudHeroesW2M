@@ -5,6 +5,7 @@ import { HeroesService } from '../../services/heroes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
+import { Hero } from 'src/app/models/interfaces';
 
 @Component({
   selector: 'app-heroes-list',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class HeroesListComponent implements OnInit{
 
-  public heroesData: any[] = [];
+  public heroesData: Hero[] = [];
   public dataSource: any;
 
   constructor(
@@ -26,7 +27,7 @@ export class HeroesListComponent implements OnInit{
    .subscribe(
      (response: any) => {
       this.heroesData = response.heroes;
-      this.dataSource = new MatTableDataSource<Heroes>(this.heroesData);
+      this.dataSource = new MatTableDataSource<Hero>(this.heroesData);
       this.dataSource.paginator = this.paginator;
      });
   }
@@ -37,7 +38,7 @@ export class HeroesListComponent implements OnInit{
   paginator!: MatPaginator;   
 
   public newEditHeroe(row: any){
-    this.router.navigate([`heroes-form/${row.name}`]);
+    this.router.navigate([`heroes-form/${row.id}`]);
   }
   
   public deleteItem(row: any){
@@ -51,12 +52,5 @@ export class HeroesListComponent implements OnInit{
 
 }
 
-export interface Heroes {
-  name: string;
-  publisher: string;
-  alter_ego: string;
-  first_appearance: string;
-  characters: string;
-}
 
 
