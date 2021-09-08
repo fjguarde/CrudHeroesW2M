@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroesListModule } from './components/heroes-list/heroes-list.module';
 import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
+import { NewEditHeroesComponent } from './components/new-edit-heroes/new-edit-heroes.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NewEditHeroesComponent
   ],
   imports: [
     BrowserModule,

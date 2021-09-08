@@ -8,7 +8,7 @@ export class HeroesService {
 
   constructor(private httpClient: HttpClient){};
 
-  getHeroes(url: string){
+  public getHeroes(url: string){
     return this.httpClient.get(url);
   }
 }
