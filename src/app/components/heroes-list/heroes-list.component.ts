@@ -38,7 +38,7 @@ export class HeroesListComponent implements OnInit{
   paginator!: MatPaginator;   
 
   public newEditHeroe(row: any){
-    this.router.navigate([`heroes-form/${row.id}`]);
+    this.router.navigate([`form-heroes/${row.id}`]);
   }
   
   public deleteItem(row: any){

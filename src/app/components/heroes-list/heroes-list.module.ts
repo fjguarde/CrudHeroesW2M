@@ -4,6 +4,7 @@ import { HeroesListComponent } from './heroes-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http'
+import { HeroesListRoutingModule } from './heroes-list-routing.module';
 
 const materialModules = [
   MatTableModule,
@@ -16,6 +17,7 @@ const materialModules = [
   ],
   imports: [
     CommonModule,
+    HeroesListRoutingModule,
     HttpClientModule,
     ...materialModules
   ],

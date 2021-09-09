@@ -4,6 +4,7 @@ import { FormHeroesComponent } from './form-heroes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormHeroesRoutingModule } from './form-heroes-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    FormHeroesRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,

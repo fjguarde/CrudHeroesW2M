@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
-import { FormHeroesComponent } from './components/form-heroes/form-heroes.component';
 
 
 const routes: Routes = [
-  { path: '', component: HeroesListComponent, pathMatch: 'full'},
-  { path: 'heroes', component: HeroesListComponent },
-  { path: 'heroes-form/:id', component: FormHeroesComponent }
+  { path: '', pathMatch: 'full',
+    loadChildren: () => import('./components/heroes-list/heroes-list.module').then(m => m.HeroesListModule)
+  },
+  { path: 'heroes',
+    loadChildren: () => import('./components/heroes-list/heroes-list.module').then(m => m.HeroesListModule)
+  },
+  { path: 'form-heroes/:id',
+    loadChildren: () => import('./components/form-heroes/form-heroes.module').then(m => m.FormHeroesModule)
+  }
 ];
 
 @NgModule({
