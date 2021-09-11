@@ -4,6 +4,8 @@ import { HeroesService } from '../../services/heroes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Hero } from 'src/app/models/interfaces';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-form-heroes',
@@ -17,13 +19,19 @@ export class FormHeroesComponent implements OnInit {
   public heroId = '';
   public formHero: FormGroup = new FormGroup({});
   private regexIsALetter = '^[a-zA-Z]+$';
+  public loading: boolean = true;
+  private loadingSubscription: Subscription = new Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private heroesService: HeroesService,
-    private fb: FormBuilder ) { }
+    private fb: FormBuilder,
+    private loadingService: LoadingService ) { }
 
   ngOnInit(): void {
+    this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
+      this.loading = value;
+    });
     this.buildForm();
     this.heroId = this.route.snapshot.paramMap.get('id')!;
     this.heroesService.getHeroeById(`${environment.apiUrl}/heroes`, this.heroId)
@@ -43,5 +51,8 @@ export class FormHeroesComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.loadingSubscription.unsubscribe();
+  }
 
 }

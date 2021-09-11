@@ -5,29 +5,31 @@
 <ng-template #newHero>
     Creation Mode.
 </ng-template>
+<ng-container *ngIf="!loading">
 
-<form [formGroup]="formHero" class="example-form">
+    <form [formGroup]="formHero" class="example-form">
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Name:</mat-label>
-        <input formControlName="name" matInput upperCaseText>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Publisher:</mat-label>
-        <input formControlName="publisher" matInput >
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Alter Ego:</mat-label>
-        <input formControlName="alter_ego" matInput >
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>First Appearance:</mat-label>
-        <input formControlName="first_appearance" matInput >
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Characters:</mat-label>
-        <input formControlName="characters" matInput >
-    </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name:</mat-label>
+            <input formControlName="name" matInput upperCaseText>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Publisher:</mat-label>
+            <input formControlName="publisher" matInput >
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Alter Ego:</mat-label>
+            <input formControlName="alter_ego" matInput >
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>First Appearance:</mat-label>
+            <input formControlName="first_appearance" matInput >
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Characters:</mat-label>
+            <input formControlName="characters" matInput >
+        </mat-form-field>
 
 
-</form>
+    </form>
+</ng-container>

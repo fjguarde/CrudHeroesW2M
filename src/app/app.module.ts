@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroesListModule } from './components/heroes-list/heroes-list.module';
 import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
 import { FormHeroesModule } from './components/form-heroes/form-heroes.module';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,14 @@ import { FormHeroesModule } from './components/form-heroes/form-heroes.module';
     BrowserAnimationsModule,
     HeroesListModule,
     ConfirmDialogModule,
-    FormHeroesModule
+    FormHeroesModule,
+    MatProgressSpinnerModule
   ],
   exports: [
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true,}
+  ],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
 })

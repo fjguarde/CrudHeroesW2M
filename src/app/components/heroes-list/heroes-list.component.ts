@@ -7,6 +7,8 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { Router } from '@angular/router';
 import { Hero } from 'src/app/models/interfaces';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from 'src/app/services/loading.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-heroes-list',
@@ -17,13 +19,20 @@ export class HeroesListComponent implements OnInit{
 
   public heroesData: Hero[] = [];
   public dataSource: any;
+  public loading: boolean = true;
+  private loadingSubscription: Subscription = new Subscription;
+
 
   constructor(
     private heroesService: HeroesService,
     public dialog: MatDialog,
-    private router: Router){};
+    private router: Router,
+    private loadingService: LoadingService ){};
 
   ngOnInit(): void {
+    this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
+      this.loading = value;
+    });
    this.heroesService.getHeroes(`${environment.apiUrl}/heroes`)
    .subscribe(
      (response: any) => {
@@ -49,6 +58,10 @@ export class HeroesListComponent implements OnInit{
       console.log(`Dialog result: ${result}`);
     });
 
+  }
+
+  ngOnDestroy() {
+    this.loadingSubscription.unsubscribe();
   }
 
 }
