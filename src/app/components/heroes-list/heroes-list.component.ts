@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { Hero } from 'src/app/models/interfaces';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-heroes-list',
@@ -23,7 +24,7 @@ export class HeroesListComponent implements OnInit{
     private router: Router){};
 
   ngOnInit(): void {
-   this.heroesService.getHeroes('http://localhost:9080/heroes')
+   this.heroesService.getHeroes(`${environment.apiUrl}/heroes`)
    .subscribe(
      (response: any) => {
       this.heroesData = response;

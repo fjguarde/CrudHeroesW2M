@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Hero } from 'src/app/models/interfaces';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-form-heroes',
@@ -25,7 +26,7 @@ export class FormHeroesComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.heroId = this.route.snapshot.paramMap.get('id')!;
-    this.heroesService.getHeroeById('http://localhost:9080/heroes', this.heroId)
+    this.heroesService.getHeroeById(`${environment.apiUrl}/heroes`, this.heroId)
     .subscribe( (resp: Hero[]) => {
       this.hero = resp[0];
       this.buildForm()
