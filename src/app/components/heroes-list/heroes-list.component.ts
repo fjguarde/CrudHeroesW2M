@@ -26,7 +26,7 @@ export class HeroesListComponent implements OnInit{
    this.heroesService.getHeroes('http://localhost:9080/heroes')
    .subscribe(
      (response: any) => {
-      this.heroesData = response.heroes;
+      this.heroesData = response;
       this.dataSource = new MatTableDataSource<Hero>(this.heroesData);
       this.dataSource.paginator = this.paginator;
      });
