@@ -1,4 +1,11 @@
-<p>Heroes New Edit</p>
+<div *ngIf="heroId; else newHero">
+    Edition Mode.
+</div>
+  
+<ng-template #newHero>
+    Creation Mode.
+</ng-template>
+
 <form [formGroup]="formHero" class="example-form">
 
     <mat-form-field class="example-full-width" appearance="fill">

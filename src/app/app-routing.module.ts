@@ -11,6 +11,9 @@ const routes: Routes = [
   },
   { path: 'form-heroes/:id',
     loadChildren: () => import('./components/form-heroes/form-heroes.module').then(m => m.FormHeroesModule)
+  },
+  { path: 'form-heroes',
+    loadChildren: () => import('./components/form-heroes/form-heroes.module').then(m => m.FormHeroesModule)
   }
 ];
 

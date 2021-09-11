@@ -37,8 +37,8 @@ export class HeroesListComponent implements OnInit{
   @ViewChild('paginator')
   paginator!: MatPaginator;   
 
-  public newEditHeroe(row: any){
-    this.router.navigate([`form-heroes/${row.id}`]);
+  public newEditHeroe(subPath: string){
+    this.router.navigate([`form-heroes/${subPath}`]);
   }
   
   public deleteItem(row: any){
