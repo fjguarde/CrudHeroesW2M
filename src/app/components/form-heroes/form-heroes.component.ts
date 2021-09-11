@@ -26,16 +26,19 @@ export class FormHeroesComponent implements OnInit {
     this.buildForm();
     this.heroId = this.route.snapshot.paramMap.get('id')!;
     this.heroesService.getHeroeById('http://localhost:9080/heroes', this.heroId)
-    .subscribe( (resp: Hero) => this.hero = resp)
+    .subscribe( (resp: Hero[]) => {
+      this.hero = resp[0];
+      this.buildForm()
+    })
 
   }
   buildForm() {
     this.formHero = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(this.regexIsALetter)]],
-      publisher: [''],
-      alter_ego: [''],
-      first_appearance: [''],
-      characters: [''],
+      name: [this.hero? this.hero.name : '', [Validators.required, Validators.pattern(this.regexIsALetter)]],
+      publisher: [this.hero? this.hero.publisher : ''],
+      alter_ego: [this.hero? this.hero.alter_ego : ''],
+      first_appearance: [this.hero? this.hero.first_appearance : ''],
+      characters: [this.hero? this.hero.characters : ''],
     })
   }
 
