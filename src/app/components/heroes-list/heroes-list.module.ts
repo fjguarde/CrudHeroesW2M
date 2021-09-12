@@ -22,7 +22,6 @@ const materialModules = [
     CommonModule,
     HeroesListRoutingModule,
     HttpClientModule,
-    FormsModule,
     ...materialModules
   ],
   exports: [
