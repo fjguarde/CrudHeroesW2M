@@ -7,8 +7,8 @@
 </ng-template>
 <ng-container *ngIf="!loading">
 
-    <form [formGroup]="formHero" class="example-form">
 
+    <form [formGroup]="formHero" class="example-form" (ngSubmit)="onSubmitForm(formHero.value)">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name:</mat-label>
             <input formControlName="name" matInput upperCaseText>
@@ -29,7 +29,9 @@
             <mat-label>Characters:</mat-label>
             <input formControlName="characters" matInput >
         </mat-form-field>
-
-
+        
+        <ng-container matColumnDef="actions">
+            <button mat-button type="submit">Submit</button>
+        </ng-container>
     </form>
 </ng-container>

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HeroesService } from '../../services/heroes.service';
@@ -15,36 +15,41 @@ import { Subscription } from 'rxjs/internal/Subscription';
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss']
 })
-export class HeroesListComponent implements OnInit{
+export class HeroesListComponent implements OnInit, AfterViewInit {
 
   public heroesData: Hero[] = [];
   public dataSource: any;
   public loading: boolean = true;
+  public searchByName = '';
   private loadingSubscription: Subscription = new Subscription;
+  public displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
 
   constructor(
     private heroesService: HeroesService,
     public dialog: MatDialog,
     private router: Router,
-    private loadingService: LoadingService ){};
+    private loadingService: LoadingService ){}
+    
+  ngAfterViewInit(): void {
+    this.heroesService.getHeroes()
+    .subscribe(
+      (response: Hero[]) => {
+       this.heroesData = response;
+       this.loadTable(this.heroesData);
+      });
+  }
 
   ngOnInit(): void {
     this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
       this.loading = value;
     });
-   this.heroesService.getHeroes(`${environment.apiUrl}/heroes`)
-   .subscribe(
-     (response: Hero[]) => {
-      this.heroesData = response;
-      this.loadTable(response);
-     });
   }
+
   loadTable(heroParam: Hero[]) {
     this.dataSource = new MatTableDataSource<Hero>(heroParam);
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
   
   @ViewChild('paginator')
   paginator!: MatPaginator;   
@@ -59,7 +64,7 @@ export class HeroesListComponent implements OnInit{
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.heroesService
-          .deleteHero(`${environment.apiUrl}/heroes`, id)
+          .deleteHero(id)
             .subscribe((idResponse: string) => {
               this.removeTableRow(id);
               this.loadTable(this.heroesData);
@@ -79,10 +84,16 @@ export class HeroesListComponent implements OnInit{
     }
   }
 
-  findHero(hero: Hero, id: string) { 
-    return hero.id === id;
-}
-
+  filterHero(){
+    if (this.searchByName === '') {
+      this.loadTable(this.heroesData);
+      
+    }else {
+      const filterHeroes = this.heroesData.filter(e => e.name.toLowerCase().includes(this.searchByName.toLocaleLowerCase()));
+      this.loadTable(filterHeroes);
+    }
+  }
+  
   ngOnDestroy() {
     this.loadingSubscription.unsubscribe();
   }

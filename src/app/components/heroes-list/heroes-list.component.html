@@ -1,5 +1,13 @@
 <ng-container *ngIf="!loading">
 
+<mat-form-field>
+  <mat-placeholder>Search reports</mat-placeholder>
+    <input  [(ngModel)]="searchByName" matInput type="search">
+    <button mat-button matSuffix mat-stroked-button aria-label="search" (click)="filterHero()">
+        Search
+  </button>
+</mat-form-field>
+
 <div class="mat-elevation-z8">
   <button mat-button (click)="newEditHeroe('')">New Heroe</button>
 

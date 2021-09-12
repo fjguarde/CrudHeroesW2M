@@ -5,10 +5,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http'
 import { HeroesListRoutingModule } from './heroes-list-routing.module';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 const materialModules = [
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatInputModule
 ];
 
 @NgModule({
@@ -19,6 +22,7 @@ const materialModules = [
     CommonModule,
     HeroesListRoutingModule,
     HttpClientModule,
+    FormsModule,
     ...materialModules
   ],
   exports: [

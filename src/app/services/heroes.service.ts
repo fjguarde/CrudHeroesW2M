@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Hero } from '../models/interfaces';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +12,25 @@ export class HeroesService {
 
   constructor(private httpClient: HttpClient){};
 
-  public getHeroes(url: string): Observable<Hero[]>{
-    return this.httpClient.get<Hero[]>(url);
+  public getHeroes(): Observable<Hero[]>{
+    return this.httpClient.get<Hero[]>(`${environment.apiUrl}/heroes`);
   }
 
-  public getHeroeById(urlParam: string, id: string): Observable<Hero[]>{
-    return this.httpClient.get<Hero[]>(urlParam)
+  public getHeroeById(id: string): Observable<Hero[]>{
+    return this.httpClient.get<Hero[]>(`${environment.apiUrl}/heroes`)
     .pipe( 
       map( (heroes: Hero[]) => heroes.filter( (heroes: Hero)=> heroes.id === id) )
     );
   }
 
-  public updateHero(id: string){
-    
+  public updateHero(hero: Hero){
+    return this.httpClient.post<Hero>(`${environment.apiUrl}/heroes`, hero);
   }
 
-  public deleteHero(url: string, id: string): Observable<string>{
+  public deleteHero(id: string): Observable<string>{
     const httpParams = new HttpParams().set('id', id);
     let options = { params: httpParams };
-    return this.httpClient.delete<string>(url, options);
+    return this.httpClient.delete<string>(`${environment.apiUrl}/heroes`, options);
   }
 
 }
