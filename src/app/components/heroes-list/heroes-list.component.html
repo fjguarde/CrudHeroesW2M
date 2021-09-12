@@ -2,8 +2,8 @@
 
 <mat-form-field>
   <mat-placeholder>Search reports</mat-placeholder>
-    <input  [(ngModel)]="searchByName" matInput type="search">
-    <button mat-button matSuffix mat-stroked-button aria-label="search" (click)="filterHero()">
+    <input matInput type="search" #searchInput>
+    <button mat-button matSuffix mat-stroked-button aria-label="search" (click)="filterHero(searchInput.value)">
         Search
   </button>
 </mat-form-field>

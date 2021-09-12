@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
 import { Hero } from 'src/app/models/interfaces';
-import { environment } from 'src/environments/environment';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 
@@ -20,7 +19,6 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
   public heroesData: Hero[] = [];
   public dataSource: any;
   public loading: boolean = true;
-  public searchByName = '';
   private loadingSubscription: Subscription = new Subscription;
   public displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
 
@@ -84,12 +82,12 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  filterHero(){
-    if (this.searchByName === '') {
+  filterHero(wordToSeach: string){
+    if (wordToSeach === '') {
       this.loadTable(this.heroesData);
       
     }else {
-      const filterHeroes = this.heroesData.filter(e => e.name.toLowerCase().includes(this.searchByName.toLocaleLowerCase()));
+      const filterHeroes = this.heroesData.filter(e => e.name.toLowerCase().includes(wordToSeach.toLocaleLowerCase()));
       this.loadTable(filterHeroes);
     }
   }
