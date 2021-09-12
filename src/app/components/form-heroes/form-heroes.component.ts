@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Hero } from 'src/app/models/interfaces';
-import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -17,10 +16,10 @@ export class FormHeroesComponent implements OnInit {
 
   public hero: any;
   public heroId = '';
-  public formHero: FormGroup = new FormGroup({});
+  public formHero: FormGroup;
   private regexIsALetter = '^[a-zA-Z]+$';
   public loading: boolean = true;
-  private loadingSubscription: Subscription = new Subscription;
+  private loadingSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,

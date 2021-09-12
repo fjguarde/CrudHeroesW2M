@@ -19,7 +19,7 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
   public heroesData: Hero[] = [];
   public dataSource: any;
   public loading: boolean = true;
-  private loadingSubscription: Subscription = new Subscription;
+  private loadingSubscription: Subscription;
   public displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
 
   constructor(
