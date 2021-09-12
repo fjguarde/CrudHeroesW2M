@@ -11,8 +11,8 @@ export class HeroesService {
 
   constructor(private httpClient: HttpClient){};
 
-  public getHeroes(url: string): Observable<Hero>{
-    return this.httpClient.get<Hero>(url);
+  public getHeroes(url: string): Observable<Hero[]>{
+    return this.httpClient.get<Hero[]>(url);
   }
 
   public getHeroeById(urlParam: string, id: string): Observable<Hero[]>{
@@ -26,10 +26,10 @@ export class HeroesService {
     
   }
 
-  public deleteHero(url: string, id: string): Observable<number>{
+  public deleteHero(url: string, id: string): Observable<string>{
     const httpParams = new HttpParams().set('id', id);
     let options = { params: httpParams };
-    return this.httpClient.delete<number>(url, options);
+    return this.httpClient.delete<string>(url, options);
   }
 
 }

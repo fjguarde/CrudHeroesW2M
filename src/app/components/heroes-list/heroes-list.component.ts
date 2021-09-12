@@ -22,7 +22,6 @@ export class HeroesListComponent implements OnInit{
   public loading: boolean = true;
   private loadingSubscription: Subscription = new Subscription;
 
-
   constructor(
     private heroesService: HeroesService,
     public dialog: MatDialog,
@@ -35,11 +34,14 @@ export class HeroesListComponent implements OnInit{
     });
    this.heroesService.getHeroes(`${environment.apiUrl}/heroes`)
    .subscribe(
-     (response: any) => {
+     (response: Hero[]) => {
       this.heroesData = response;
-      this.dataSource = new MatTableDataSource<Hero>(this.heroesData);
-      this.dataSource.paginator = this.paginator;
+      this.loadTable(response);
      });
+  }
+  loadTable(heroParam: Hero[]) {
+    this.dataSource = new MatTableDataSource<Hero>(heroParam);
+    this.dataSource.paginator = this.paginator;
   }
 
   displayedColumns: string[] = ['name', 'publisher', 'alter_ego', 'first_appearance', 'characters', 'actions'];
@@ -58,12 +60,28 @@ export class HeroesListComponent implements OnInit{
       if (result) {
         this.heroesService
           .deleteHero(`${environment.apiUrl}/heroes`, id)
-            .subscribe(response => console.log('Response delete. ', response)
+            .subscribe((idResponse: string) => {
+              this.removeTableRow(id);
+              this.loadTable(this.heroesData);
+            }
             );
       }
     });
 
   }
+  removeTableRow(id: string) {
+    const heroToFind: Hero = this.heroesData.find(e => e.id === id)!;
+    const index = this.heroesData.indexOf(heroToFind, 0);
+    
+    if (index > -1) {
+      this.heroesData.splice(index, 1);
+      this.loadTable(this.heroesData);
+    }
+  }
+
+  findHero(hero: Hero, id: string) { 
+    return hero.id === id;
+}
 
   ngOnDestroy() {
     this.loadingSubscription.unsubscribe();
