@@ -83,13 +83,16 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
   }
 
   filterHero(wordToSeach: string){
-    if (wordToSeach === '') {
-      this.loadTable(this.heroesData);
-      
-    }else {
-      const filterHeroes = this.heroesData.filter(e => e.name.toLowerCase().includes(wordToSeach.toLocaleLowerCase()));
-      this.loadTable(filterHeroes);
-    }
+    let filterHeroes: Hero[];
+    this.heroesService.filterHero(wordToSeach)
+    .subscribe((respFilter: Hero[]) => {
+       filterHeroes = respFilter
+       if (wordToSeach === '') {
+         this.loadTable(this.heroesData);
+        }else {
+          this.loadTable(filterHeroes);
+        }
+      });
   }
   
   ngOnDestroy() {

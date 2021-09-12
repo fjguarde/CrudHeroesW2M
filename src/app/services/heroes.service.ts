@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Hero } from '../models/interfaces';
 import { environment } from '../../environments/environment.prod';
 
@@ -33,4 +33,12 @@ export class HeroesService {
     return this.httpClient.delete<string>(`${environment.apiUrl}/heroes`, options);
   }
 
+  public filterHero(wordToSeach: string): Observable<Hero[]>{
+    return this.httpClient.get<Hero[]>(`${environment.apiUrl}/heroes`)
+    .pipe( 
+      map( (heroes: Hero[]) => heroes.filter( 
+        (heroes: Hero)=> heroes.name.toLowerCase().includes(wordToSeach.toLocaleLowerCase()) )
+      )
+    );
+  }
 }
