@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,8 +26,10 @@ export class HeroesService {
     
   }
 
-  public deleteHero(id: string){
-
+  public deleteHero(url: string, id: string): Observable<number>{
+    const httpParams = new HttpParams().set('id', id);
+    let options = { params: httpParams };
+    return this.httpClient.delete<number>(url, options);
   }
 
 }

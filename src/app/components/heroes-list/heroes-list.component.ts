@@ -51,11 +51,16 @@ export class HeroesListComponent implements OnInit{
     this.router.navigate([`form-heroes/${subPath}`]);
   }
   
-  public deleteItem(row: any){
+  public deleteHero(id: string){
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.heroesService
+          .deleteHero(`${environment.apiUrl}/heroes`, id)
+            .subscribe(response => console.log('Response delete. ', response)
+            );
+      }
     });
 
   }
