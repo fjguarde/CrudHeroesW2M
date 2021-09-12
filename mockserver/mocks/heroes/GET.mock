@@ -9,72 +9,72 @@ Access-Control-Allow-Origin: *
             "id": "0",
             "name":"Batman", 
             "publisher":"DC Comics", 
-            "alter_ego":"Bruce Wayne",
-            "first_appearance":"Detective Comics #27",
+            "alterEgo":"Bruce Wayne",
+            "firstAppearance":"Detective Comics #27",
             "characters":"Bruce Wayne"
       },
       {
             "id": "1",
             "name":"Superman", 
             "publisher":"DC Comics", 
-            "alter_ego":"Kal-El",
-            "first_appearance":"Action Comics #1",
+            "alterEgo":"Kal-El",
+            "firstAppearance":"Action Comics #1",
             "characters":"Kal-El"
       },
       {
             "id": "2",
             "name":"Flash", 
             "publisher":"DC Comics", 
-            "alter_ego":"Jay Garrick",
-            "first_appearance":"Flash Comics #1",
+            "alterEgo":"Jay Garrick",
+            "firstAppearance":"Flash Comics #1",
             "characters":"Jay Garrick, Barry Allen, Wally West, Bart Allen"
       },
       {
             "id": "3",
             "name":"Green Lantern", 
             "publisher":"DC Comics", 
-            "alter_ego":"Alan Scott",
-            "first_appearance":"All-American Comics #16",
+            "alterEgo":"Alan Scott",
+            "firstAppearance":"All-American Comics #16",
             "characters":"Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz"
       },
       {
             "id": "4",
             "name":"Green Arrow", 
             "publisher":"DC Comics", 
-            "alter_ego":"Oliver Queen",
-            "first_appearance":"More Fun Comics #73",
+            "alterEgo":"Oliver Queen",
+            "firstAppearance":"More Fun Comics #73",
             "characters":"Oliver Queen"
       },
       {
             "id": "5",
             "name":"Wonder Woman", 
             "publisher":"DC Comics", 
-            "alter_ego":"Princess Diana",
-            "first_appearance":"All Star Comics #8",
+            "alterEgo":"Princess Diana",
+            "firstAppearance":"All Star Comics #8",
             "characters":"Princess Diana"
       },
       {
             "id": "6",
             "name":"Martian Manhunter", 
             "publisher":"DC Comics", 
-            "alter_ego":"J'onn J'onzz",
-            "first_appearance":"Detective Comics #225",
+            "alterEgo":"J'onn J'onzz",
+            "firstAppearance":"Detective Comics #225",
             "characters":"Martian Manhunter"
       },
       {
             "id": "7",
             "name":"Robin/Nightwing", 
             "publisher":"DC Comics", 
-            "alter_ego":"Dick Grayson",
-            "first_appearance":"Detective Comics #38",
+            "alterEgo":"Dick Grayson",
+            "firstAppearance":"Detective Comics #38",
             "characters":"Dick Grayson"
       },
       {
             "id": "8",
             "name":"Blue Beetle", 
             "publisher":"DC Comics", 
-            "alter_ego":"Dan Garret",
-            "first_appearance":"Mystery Men Comics #1",
+            "alterEgo":"Dan Garret",
+            "firstAppearance":"Mystery Men Comics #1",
             "characters":"Dan Garret, Ted Kord, Jaime Reyes"
       }
 ]

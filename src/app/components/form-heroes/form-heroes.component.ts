@@ -46,8 +46,8 @@ export class FormHeroesComponent implements OnInit {
       id: [this.hero? this.hero.id: ''],
       name: [this.hero? this.hero.name : '', [Validators.required, Validators.pattern(this.regexIsALetter)]],
       publisher: [this.hero? this.hero.publisher : ''],
-      alter_ego: [this.hero? this.hero.alter_ego : ''],
-      first_appearance: [this.hero? this.hero.first_appearance : ''],
+      alterEgo: [this.hero? this.hero.alterEgo : ''],
+      firstAppearance: [this.hero? this.hero.firstAppearance : ''],
       characters: [this.hero? this.hero.characters : ''],
     })
   }
