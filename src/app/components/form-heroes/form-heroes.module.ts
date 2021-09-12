@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormHeroesRoutingModule } from './form-heroes-routing.module';
 import { UpperCaseTextDirective } from 'src/app/directives/upper-case-text.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UpperCaseTextDirective } from 'src/app/directives/upper-case-text.direc
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class FormHeroesModule { }

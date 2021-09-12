@@ -1,0 +1,19 @@
+{
+    "HERO": "Hero",
+    "NEW": "New",
+    "SEARCH": "Search",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "NAME": "Name",
+    "PUBLISHER": "publisher",
+    "ALTER_EGO": "Alter Ego",
+    "FIRST_APPEARANCE": "First Appearance",
+    "CHARACTERS": "Characters",
+    "ACTIONS": "Actions",
+    "CREATION": "Creation",
+    "EDITION": "Edition",
+    "MODE": "Mode",
+    "SUBMIT": "Submit",
+    "EDIT_MODE": "Edition Mode",
+    "CREATION_MODE": "Creation Mode"
+}

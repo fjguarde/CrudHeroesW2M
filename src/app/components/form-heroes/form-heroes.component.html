@@ -1,37 +1,37 @@
 <div *ngIf="heroId; else newHero">
-    Edition Mode.
+    {{'EDIT_MODE' | translate}} 
 </div>
   
 <ng-template #newHero>
-    Creation Mode.
+    {{'CREATION_MODE' | translate}}
 </ng-template>
 <ng-container *ngIf="!loading">
 
 
     <form [formGroup]="formHero" class="example-form" (ngSubmit)="onSubmitForm(formHero.value)">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Name:</mat-label>
+            <mat-label>{{'NAME' | translate}}:</mat-label>
             <input formControlName="name" matInput upperCaseText>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Publisher:</mat-label>
+            <mat-label>{{'PUBLISHER' | translate}}:</mat-label>
             <input formControlName="publisher" matInput >
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Alter Ego:</mat-label>
+            <mat-label>{{'ALTER_EGO' | translate}}:</mat-label>
             <input formControlName="alterEgo" matInput >
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>First Appearance:</mat-label>
+            <mat-label>{{'FIRST_APPEARANCE' | translate}}:</mat-label>
             <input formControlName="firstAppearance" matInput >
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Characters:</mat-label>
+            <mat-label>{{'CHARACTERS' | translate}}:</mat-label>
             <input formControlName="characters" matInput >
         </mat-form-field>
         
         <ng-container matColumnDef="actions">
-            <button mat-button type="submit">Submit</button>
+            <button mat-button type="submit">{{'SUBMIT' | translate}}</button>
         </ng-container>
     </form>
 </ng-container>

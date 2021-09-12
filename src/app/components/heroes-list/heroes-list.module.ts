@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { HeroesListRoutingModule } from './heroes-list-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 const materialModules = [
   MatTableModule,
@@ -16,12 +17,13 @@ const materialModules = [
 
 @NgModule({
   declarations: [
-    HeroesListComponent
+    HeroesListComponent,
   ],
   imports: [
     CommonModule,
     HeroesListRoutingModule,
     HttpClientModule,
+    TranslateModule,
     ...materialModules
   ],
   exports: [
