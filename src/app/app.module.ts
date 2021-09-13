@@ -3,11 +3,8 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { HeroesListModule } from './components/heroes-list/heroes-list.module'
-import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module'
-import { FormHeroesModule } from './components/form-heroes/form-heroes.module'
 import { LoadingInterceptor } from './interceptors/loading.interceptor'
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
@@ -21,10 +18,8 @@ import { HttpClient } from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HeroesListModule,
-    ConfirmDialogModule,
-    FormHeroesModule,
     MatProgressSpinnerModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

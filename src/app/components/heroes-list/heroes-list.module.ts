@@ -7,11 +7,17 @@ import { HttpClientModule } from '@angular/common/http'
 import { HeroesListRoutingModule } from './heroes-list-routing.module'
 import { MatInputModule } from '@angular/material/input'
 import { TranslateModule } from '@ngx-translate/core'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { FormsModule } from '@angular/forms'
+import { ConfirmDialogModule } from '../confirm-dialog/confirm-dialog.module'
+import { MatButtonModule } from '@angular/material/button'
 
 const materialModules = [
   MatTableModule,
   MatPaginatorModule,
-  MatInputModule
+  MatInputModule,
+  MatFormFieldModule,
+  MatButtonModule
 ]
 
 @NgModule({
@@ -20,13 +26,13 @@ const materialModules = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     HeroesListRoutingModule,
     HttpClientModule,
-    TranslateModule,
+    TranslateModule.forChild(),
+    ConfirmDialogModule,
     ...materialModules
   ],
-  exports: [
-    HeroesListComponent
-  ]
+  exports: []
 })
 export class HeroesListModule { }
