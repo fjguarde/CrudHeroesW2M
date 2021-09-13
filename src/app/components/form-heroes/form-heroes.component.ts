@@ -14,7 +14,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class FormHeroesComponent implements OnInit {
 
-  public hero: any;
+  public hero: Hero;
   public heroId = '';
   public formHero: FormGroup;
   private regexIsALetter = '^[a-zA-Z]+$';
@@ -55,7 +55,7 @@ export class FormHeroesComponent implements OnInit {
   onSubmitForm(hero: Hero) {
     this.heroesService
       .updateHero(hero)
-        .subscribe((resp)=> {
+        .subscribe(()=> {
           this.router.navigate([`heroes`]);
         }
     );

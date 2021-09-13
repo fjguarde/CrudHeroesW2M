@@ -6,22 +6,22 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class LoadingService {
   private _loading: boolean = true;
-  loadingStatus = new Subject();
+  public loadingStatus = new Subject<boolean>();
 
   get loading():boolean {
     return this._loading;
   }
 
-  set loading(value) {
+  set loading(value: boolean) {
     this._loading = value;
     this.loadingStatus.next(value);
   }
 
-  startLoading() {
+  public startLoading():void {
     this.loading = true;
   }
 
-  stopLoading() {
+  public stopLoading():void {
     this.loading = false;
   }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Hero } from '../models/interfaces';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +23,13 @@ export class HeroesService {
     );
   }
 
-  public updateHero(hero: Hero){
+  public updateHero(hero: Hero): Observable<Hero>{
     return this.httpClient.post<Hero>(`${environment.apiUrl}/heroes`, hero);
   }
 
   public deleteHero(id: string): Observable<string>{
     const httpParams = new HttpParams().set('id', id);
-    let options = { params: httpParams };
+    const options = { params: httpParams };
     return this.httpClient.delete<string>(`${environment.apiUrl}/heroes`, options);
   }
 
