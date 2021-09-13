@@ -15,5 +15,9 @@
     "MODE": "Modo",
     "SUBMIT": "Enviar",
     "EDIT_MODE": "Modo Edición",
-    "CREATION_MODE": "Modo Creación"
+    "CREATION_MODE": "Modo Creación",
+    "DELETE_WARNING": "¡Esta acción no es reversible!",
+    "ARE_YOU_SURE": "¿Está seguro",
+    "YES": "Si",
+    "NO": "No"
 }

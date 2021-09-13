@@ -5,7 +5,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "NAME": "Name",
-    "PUBLISHER": "publisher",
+    "PUBLISHER": "Publisher",
     "ALTER_EGO": "Alter Ego",
     "FIRST_APPEARANCE": "First Appearance",
     "CHARACTERS": "Characters",
@@ -15,5 +15,9 @@
     "MODE": "Mode",
     "SUBMIT": "Submit",
     "EDIT_MODE": "Edition Mode",
-    "CREATION_MODE": "Creation Mode"
+    "CREATION_MODE": "Creation Mode",
+    "DELETE_WARNING": "This action is not reversible!",
+    "ARE_YOU_SURE": "Are you sure?",
+    "YES": "Si",
+    "NO": "No"
 }
