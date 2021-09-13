@@ -1,17 +1,17 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeroesListModule } from './components/heroes-list/heroes-list.module';
-import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module';
-import { FormHeroesModule } from './components/form-heroes/form-heroes.module';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HeroesListModule } from './components/heroes-list/heroes-list.module'
+import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.module'
+import { FormHeroesModule } from './components/form-heroes/form-heroes.module'
+import { LoadingInterceptor } from './interceptors/loading.interceptor'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { HttpClient } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -27,23 +27,23 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  })
+    })
   ],
   exports: [
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true,}
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true, }
   ],
   bootstrap: [AppComponent],
-  schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http)
 }

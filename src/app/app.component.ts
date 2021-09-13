@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { LoadingService } from './services/loading.service';
+import { Component } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
+import { Subscription } from 'rxjs/internal/Subscription'
+import { LoadingService } from './services/loading.service'
 
 @Component({
   selector: 'app-root',
@@ -17,16 +17,16 @@ export class AppComponent {
   constructor(
     private loadingService: LoadingService,
     private translate: TranslateService) {
-      translate.setDefaultLang('en');
+      translate.setDefaultLang('en')
   }
 
   ngOnInit() {
     this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
-      this.loading = value;
-    });
+      this.loading = value
+    })
   }
 
   ngOnDestroy() {
-    this.loadingSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe()
   }
 }
