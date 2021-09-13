@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { HeroesService } from '../../services/heroes.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Hero } from 'src/app/models/interfaces'
+import { Hero } from '../../../app/models/interfaces'
 import { Subscription } from 'rxjs/internal/Subscription'
-import { LoadingService } from 'src/app/services/loading.service'
+import { LoadingService } from '../../../app/services/loading.service'
 
 @Component({
   selector: 'app-form-heroes',
@@ -12,7 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service'
   styleUrls: ['./form-heroes.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FormHeroesComponent implements OnInit {
+export class FormHeroesComponent implements OnInit, OnDestroy {
 
   public hero: Hero;
   public heroId = '';
@@ -29,25 +29,30 @@ export class FormHeroesComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
-      this.loading = value
-    })
+    this.loadingSubscription = this.loadingService.loadingStatus
+      .subscribe((value: any) => {
+        this.loading = value
+      })
     this.buildForm()
     this.heroId = this.route.snapshot.paramMap.get('id')!
-    this.heroesService.getHeroeById(this.heroId)
+    this.heroesService
+    .getHeroeById(this.heroId)
       .subscribe((resp: Hero[]) => {
         this.hero = resp[0]
         this.buildForm()
       })
-  } 
+  }
+
+  ngOnDestroy() {
+    this.loadingSubscription.unsubscribe()
+  }
 
   public onSubmitForm(hero: Hero): void {
     this.heroesService
       .updateHero(hero)
-      .subscribe(() => {
-        this.router.navigate(['heroes'])
-      }
-      )
+        .subscribe(() => {
+          this.router.navigate(['heroes'])
+        })
   }
 
   private buildForm(): void {
@@ -60,9 +65,4 @@ export class FormHeroesComponent implements OnInit {
       characters: [this.hero ? this.hero.characters : ''],
     })
   }
-
-  ngOnDestroy() {
-    this.loadingSubscription.unsubscribe()
-  }
-
 }

@@ -1,12 +1,12 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core'
+import { Component, ViewChild, OnInit, AfterViewInit, OnDestroy } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { HeroesService } from '../../services/heroes.service'
 import { MatDialog } from '@angular/material/dialog'
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 import { Router } from '@angular/router'
-import { Hero } from 'src/app/models/interfaces'
-import { LoadingService } from 'src/app/services/loading.service'
+import { Hero } from '../../../app/models/interfaces'
+import { LoadingService } from '../../../app/services/loading.service'
 import { Subscription } from 'rxjs/internal/Subscription'
 
 @Component({
@@ -14,13 +14,16 @@ import { Subscription } from 'rxjs/internal/Subscription'
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss']
 })
-export class HeroesListComponent implements OnInit, AfterViewInit {
+export class HeroesListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public heroesData: Hero[] = [];
   public dataSource: MatTableDataSource<Hero>;
   public loading: boolean = true;
   public displayedColumns: string[] = ['name', 'publisher', 'alterEgo', 'firstAppearance', 'characters', 'actions'];
   private loadingSubscription: Subscription;
+
+  @ViewChild('paginator')
+  paginator!: MatPaginator;
 
   constructor(
     private heroesService: HeroesService,
@@ -43,8 +46,9 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  @ViewChild('paginator')
-  paginator!: MatPaginator;
+  ngOnDestroy() {
+    this.loadingSubscription.unsubscribe()
+  }
 
   public newEditHeroe(subPath: string): void {
     this.router.navigate([`form-heroes/${subPath}`])
@@ -52,31 +56,30 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
 
   public deleteHero(id: string): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent)
-
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.heroesService
           .deleteHero(id)
-          .subscribe(() => {
-            this.removeTableRow(id)
-            this.loadTable(this.heroesData)
-          }
-          )
+            .subscribe(() => {
+              this.removeTableRow(id)
+              this.loadTable(this.heroesData)
+            })
       }
     })
   }
 
   public filterHero(wordToSeach: string): void {
     let filterHeroes: Hero[]
-    this.heroesService.filterHero(wordToSeach)
-      .subscribe((respFilter: Hero[]) => {
-        filterHeroes = respFilter
-        if (wordToSeach === '') {
-          this.loadTable(this.heroesData)
-        } else {
-          this.loadTable(filterHeroes)
-        }
-      })
+    this.heroesService
+      .filterHero(wordToSeach)
+        .subscribe((respFilter: Hero[]) => {
+          filterHeroes = respFilter
+          if (wordToSeach === '') {
+            this.loadTable(this.heroesData)
+          } else {
+            this.loadTable(filterHeroes)
+          }
+        })
   }
 
   private loadTable(heroParam: Hero[]): void {
@@ -93,11 +96,6 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
       this.loadTable(this.heroesData)
     }
   }
-
-  ngOnDestroy() {
-    this.loadingSubscription.unsubscribe()
-  }
-
 }
 
 
