@@ -16,13 +16,13 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class HeroesListComponent implements OnInit {
 
-  private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  private verticalPosition: MatSnackBarVerticalPosition = 'top';
-  private durationInSeconds = 3;
   public heroesData: Hero[] = [];
   public dataSource: MatTableDataSource<Hero>;
   public displayedColumns: string[] = ['name', 'publisher', 'alterEgo', 'firstAppearance', 'characters', 'actions'];
-
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  private verticalPosition: MatSnackBarVerticalPosition = 'top';
+  private durationInSeconds = 3;
+  
   @ViewChild('paginator')
   paginator!: MatPaginator;
 
