@@ -42,8 +42,8 @@ export class HeroesListComponent implements OnInit {
         })
   }
 
-  public openSnackBar(message: string) {
-    this.snackBar.open(message, 'ok', {
+  public openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds * 1000,
@@ -63,7 +63,7 @@ export class HeroesListComponent implements OnInit {
             .subscribe(() => {
               this.removeTableRow(id)
               this.loadTable(this.heroesData)
-              this.openSnackBar(this.translate.instant('DELETE_SUCCESS'))
+              this.openSnackBar(this.translate.instant('DELETE_SUCCESS'), this.translate.instant('OK'))
             })
       }
     })

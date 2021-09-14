@@ -19,5 +19,8 @@
     "DELETE_WARNING": "¡Esta acción no es reversible!",
     "ARE_YOU_SURE": "¿Está seguro",
     "YES": "Si",
-    "NO": "No"
+    "NO": "No",
+    "OK": "Ok",
+    "DELETE_SUCCESS": "Se ha eliminado",
+    "UPDATE_SUCCESS": "Se ha actualizado"
 }

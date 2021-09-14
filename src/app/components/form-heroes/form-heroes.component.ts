@@ -42,8 +42,8 @@ export class FormHeroesComponent implements OnInit {
       })
   }
 
-  public openSnackBar(message: string) {
-    this.snackBar.open(message, 'ok', {
+  public openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds * 1000,
@@ -54,7 +54,7 @@ export class FormHeroesComponent implements OnInit {
     this.heroesService
       .updateHero(hero)
         .subscribe(() => {
-          this.openSnackBar(this.translate.instant('UPDATE_SUCCESS'))
+          this.openSnackBar(this.translate.instant('UPDATE_SUCCESS'), this.translate.instant('OK'))
           this.router.navigate(['heroes'])
           
         })
