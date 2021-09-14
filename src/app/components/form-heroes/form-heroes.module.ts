@@ -25,7 +25,7 @@ const materialModules = [
     ...materialModules,
     ReactiveFormsModule,
     FormsModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     UpperCaseTextModule,
     MatSnackBarModule
   ]

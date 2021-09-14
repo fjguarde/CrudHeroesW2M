@@ -1,6 +1,6 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'
+import { MatDialogRef } from '@angular/material/dialog'
 import { TranslateModule } from '@ngx-translate/core'
 
 import { ConfirmDialogComponent } from './confirm-dialog.component'
@@ -13,7 +13,7 @@ describe('ConfirmDialogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ConfirmDialogComponent ],
       imports: [
-        HttpClientModule,
+        HttpClientTestingModule,
         TranslateModule.forRoot()
       ],
       providers: [

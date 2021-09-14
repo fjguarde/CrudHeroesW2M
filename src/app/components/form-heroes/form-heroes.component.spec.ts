@@ -1,25 +1,26 @@
-import { HttpClientModule } from '@angular/common/http'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
-
 import { FormHeroesComponent } from './form-heroes.component'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 describe('FormHeroesComponent', () => {
   let component: FormHeroesComponent
   let fixture: ComponentFixture<FormHeroesComponent>
+  const spyTranslateServiceMock  = {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ FormHeroesComponent ],
       imports: [
         RouterTestingModule,
-        HttpClientModule,
-        TranslateModule.forRoot(),
+        HttpClientTestingModule,
         FormsModule,
-        ReactiveFormsModule]
+        MatSnackBarModule,
+        TranslateModule.forRoot(),
+        ReactiveFormsModule],
     })
     .compileComponents()
   })

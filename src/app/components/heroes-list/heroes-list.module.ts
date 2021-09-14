@@ -30,7 +30,7 @@ const materialModules = [
     FormsModule,
     HeroesListRoutingModule,
     HttpClientModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     ConfirmDialogModule,
     ...materialModules,
     MatSnackBarModule

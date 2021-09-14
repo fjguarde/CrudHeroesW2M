@@ -1,12 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-
 import { HeroesListComponent } from './heroes-list.component'
-import { HeroesService } from '../../services/heroes.service'
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'
-import { Router } from '@angular/router'
-import { LoadingService } from '../../services/loading.service'
+import { MatDialogModule } from '@angular/material/dialog'
 import { RouterTestingModule } from '@angular/router/testing'
-import { HttpClientModule } from '@angular/common/http'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { TranslateModule } from '@ngx-translate/core'
 
 describe('HeroesListComponent', () => {
   let component: HeroesListComponent
@@ -18,8 +16,10 @@ describe('HeroesListComponent', () => {
       imports: [
         RouterTestingModule,
         RouterTestingModule,
-        HttpClientModule,
-        MatDialogModule
+        HttpClientTestingModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        TranslateModule.forRoot()
       ]
     })
     .compileComponents()
