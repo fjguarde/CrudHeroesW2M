@@ -1,37 +1,35 @@
 <div *ngIf="heroId; else newHero">
-    {{'EDIT_MODE' | translate}} 
+    {{'EDIT_MODE' | translate}}
 </div>
-  
+
 <ng-template #newHero>
     {{'CREATION_MODE' | translate}}
 </ng-template>
-<ng-container *ngIf="!loading">
 
+<form [formGroup]="formHero" class="example-form" (ngSubmit)="onSubmitForm(formHero.value)">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'NAME' | translate}}:</mat-label>
+        <input formControlName="name" matInput upperCaseText>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'PUBLISHER' | translate}}:</mat-label>
+        <input formControlName="publisher" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'ALTER_EGO' | translate}}:</mat-label>
+        <input formControlName="alterEgo" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'FIRST_APPEARANCE' | translate}}:</mat-label>
+        <input formControlName="firstAppearance" matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'CHARACTERS' | translate}}:</mat-label>
+        <input formControlName="characters" matInput>
+    </mat-form-field>
 
-    <form [formGroup]="formHero" class="example-form" (ngSubmit)="onSubmitForm(formHero.value)">
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'NAME' | translate}}:</mat-label>
-            <input formControlName="name" matInput upperCaseText>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'PUBLISHER' | translate}}:</mat-label>
-            <input formControlName="publisher" matInput >
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'ALTER_EGO' | translate}}:</mat-label>
-            <input formControlName="alterEgo" matInput >
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'FIRST_APPEARANCE' | translate}}:</mat-label>
-            <input formControlName="firstAppearance" matInput >
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'CHARACTERS' | translate}}:</mat-label>
-            <input formControlName="characters" matInput >
-        </mat-form-field>
-        
-        <ng-container matColumnDef="actions">
-            <button [disabled]="!formHero.valid" mat-button matSuffix mat-stroked-button type="submit">{{'SUBMIT' | translate}}</button>
-        </ng-container>
-    </form>
-</ng-container>
+    <ng-container matColumnDef="actions">
+        <button [disabled]="!formHero.valid" mat-button matSuffix mat-stroked-button type="submit">{{'SUBMIT' |
+            translate}}</button>
+    </ng-container>
+</form>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import { Subscription } from 'rxjs/internal/Subscription'
+import { Observable } from 'rxjs'
 import { LoadingService } from './services/loading.service'
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent {
 
   public title = 'CrudHeroesW2M';
   public loading: boolean = true;
-  private loadingSubscription: Subscription = new Subscription;
+  public loadingSubscription: Observable<boolean>
 
   constructor(
     private loadingService: LoadingService,
@@ -21,12 +21,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.loadingSubscription = this.loadingService.loadingStatus.subscribe((value: any) => {
-      this.loading = value
-    })
+    this.loadingSubscription = this.loadingService.loadingStatus
   }
 
-  ngOnDestroy() {
-    this.loadingSubscription.unsubscribe()
-  }
 }

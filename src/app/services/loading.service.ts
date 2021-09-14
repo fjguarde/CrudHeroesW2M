@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/internal/Subject'
 })
 export class LoadingService {
   public loadingStatus = new Subject<boolean>();
-  private _loading: boolean = true;
+  private _loading: boolean = false;
 
   get loading(): boolean {
     return this._loading
@@ -17,11 +17,4 @@ export class LoadingService {
     this.loadingStatus.next(value)
   }
 
-  public startLoading(): void {
-    this.loading = true
-  }
-
-  public stopLoading(): void {
-    this.loading = false
-  }
 }

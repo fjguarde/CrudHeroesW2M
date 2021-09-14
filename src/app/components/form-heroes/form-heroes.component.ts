@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { HeroesService } from '../../services/heroes.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Hero } from '../../../app/models/interfaces'
-import { Subscription } from 'rxjs/internal/Subscription'
-import { LoadingService } from '../../../app/services/loading.service'
 
 @Component({
   selector: 'app-form-heroes',
@@ -12,27 +10,20 @@ import { LoadingService } from '../../../app/services/loading.service'
   styleUrls: ['./form-heroes.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FormHeroesComponent implements OnInit, OnDestroy {
+export class FormHeroesComponent implements OnInit {
 
   public hero: Hero;
   public heroId = '';
   public formHero: FormGroup;
-  public loading: boolean = true;
   private regexIsALetter = '^[a-zA-Z]+$';
-  private loadingSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private heroesService: HeroesService,
     private fb: FormBuilder,
-    private loadingService: LoadingService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.loadingSubscription = this.loadingService.loadingStatus
-      .subscribe((value: any) => {
-        this.loading = value
-      })
     this.buildForm()
     this.heroId = this.route.snapshot.paramMap.get('id')!
     this.heroesService
@@ -41,10 +32,6 @@ export class FormHeroesComponent implements OnInit, OnDestroy {
         this.hero = resp[0]
         this.buildForm()
       })
-  }
-
-  ngOnDestroy() {
-    this.loadingSubscription.unsubscribe()
   }
 
   public onSubmitForm(hero: Hero): void {

@@ -13,16 +13,15 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.activeRequests === 0) {
-      this.loadingService.startLoading()
+      this.loadingService.loading = true
     }
 
     this.activeRequests++
     return next.handle(request).pipe(
-      delay(2000),
       finalize(() => {
         this.activeRequests--
         if (this.activeRequests === 0) {
-          this.loadingService.stopLoading()
+          this.loadingService.loading = false
         }
       })
     )
