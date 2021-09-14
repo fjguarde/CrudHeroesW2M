@@ -5,8 +5,8 @@ import { Subject } from 'rxjs/internal/Subject'
   providedIn: 'root'
 })
 export class LoadingService {
-  public loadingStatus = new Subject<boolean>();
-  private _loading: boolean = false;
+  public loadingStatus = new Subject<boolean>()
+  private _loading: boolean = false
 
   get loading(): boolean {
     return this._loading

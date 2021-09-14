@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'
 })
 export class HeroesService {
 
-  constructor(private httpClient: HttpClient) { };
+  constructor(private httpClient: HttpClient) { }
 
   public getHeroes(): Observable<Hero[]> {
     return this.httpClient.get<Hero[]>(`${environment.apiUrl}/heroes`)
