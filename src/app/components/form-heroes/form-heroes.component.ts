@@ -17,7 +17,7 @@ export class FormHeroesComponent implements OnInit {
   public hero: Hero;
   public heroId = '';
   public formHero: FormGroup;
-  private regexIsALetter = '^[a-zA-Z]+$';
+  private regIsValidName = '^[A-Za-z]+[ \t\n\r\f\v]*[A-Za-z]+$';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   private verticalPosition: MatSnackBarVerticalPosition = 'top';
   private durationInSeconds = 3;
@@ -63,7 +63,7 @@ export class FormHeroesComponent implements OnInit {
   private buildForm(): void {
     this.formHero = this.fb.group({
       id: [this.hero ? this.hero.id : ''],
-      name: [this.hero ? this.hero.name : '', [Validators.required, Validators.pattern(this.regexIsALetter)]],
+      name: [this.hero ? this.hero.name : '', [Validators.required, Validators.pattern(this.regIsValidName)]],
       publisher: [this.hero ? this.hero.publisher : ''],
       alterEgo: [this.hero ? this.hero.alterEgo : ''],
       firstAppearance: [this.hero ? this.hero.firstAppearance : ''],
