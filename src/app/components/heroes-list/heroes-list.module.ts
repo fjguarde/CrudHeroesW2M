@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { FormsModule } from '@angular/forms'
 import { ConfirmDialogModule } from '../confirm-dialog/confirm-dialog.module'
 import { MatButtonModule } from '@angular/material/button'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 const materialModules = [
   MatTableModule,
@@ -31,7 +32,8 @@ const materialModules = [
     HttpClientModule,
     TranslateModule.forChild(),
     ConfirmDialogModule,
-    ...materialModules
+    ...materialModules,
+    MatSnackBarModule
   ],
   exports: []
 })

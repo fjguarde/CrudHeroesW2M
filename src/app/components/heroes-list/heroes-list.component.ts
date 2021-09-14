@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog'
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 import { Router } from '@angular/router'
 import { Hero } from '../../../app/models/interfaces'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-heroes-list',
@@ -14,6 +16,9 @@ import { Hero } from '../../../app/models/interfaces'
 })
 export class HeroesListComponent implements OnInit {
 
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  private verticalPosition: MatSnackBarVerticalPosition = 'top';
+  private durationInSeconds = 3;
   public heroesData: Hero[] = [];
   public dataSource: MatTableDataSource<Hero>;
   public displayedColumns: string[] = ['name', 'publisher', 'alterEgo', 'firstAppearance', 'characters', 'actions'];
@@ -24,7 +29,9 @@ export class HeroesListComponent implements OnInit {
   constructor(
     private heroesService: HeroesService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.heroesService.getHeroes()
@@ -33,6 +40,14 @@ export class HeroesListComponent implements OnInit {
           this.heroesData = response
           this.loadTable(this.heroesData)
         })
+  }
+
+  public openSnackBar(message: string) {
+    this.snackBar.open(message, 'ok', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds * 1000,
+    })
   }
 
   public newEditHeroe(subPath: string): void {
@@ -48,6 +63,7 @@ export class HeroesListComponent implements OnInit {
             .subscribe(() => {
               this.removeTableRow(id)
               this.loadTable(this.heroesData)
+              this.openSnackBar(this.translate.instant('DELETE_SUCCESS'))
             })
       }
     })

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { HeroesService } from '../../services/heroes.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Hero } from '../../../app/models/interfaces'
+import { TranslateService } from '@ngx-translate/core'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-form-heroes',
@@ -16,12 +18,18 @@ export class FormHeroesComponent implements OnInit {
   public heroId = '';
   public formHero: FormGroup;
   private regexIsALetter = '^[a-zA-Z]+$';
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  private verticalPosition: MatSnackBarVerticalPosition = 'top';
+  private durationInSeconds = 3;
+
 
   constructor(
     private route: ActivatedRoute,
     private heroesService: HeroesService,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.buildForm()
@@ -34,11 +42,21 @@ export class FormHeroesComponent implements OnInit {
       })
   }
 
+  public openSnackBar(message: string) {
+    this.snackBar.open(message, 'ok', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds * 1000,
+    })
+  }
+
   public onSubmitForm(hero: Hero): void {
     this.heroesService
       .updateHero(hero)
         .subscribe(() => {
+          this.openSnackBar(this.translate.instant('UPDATE_SUCCESS'))
           this.router.navigate(['heroes'])
+          
         })
   }
 

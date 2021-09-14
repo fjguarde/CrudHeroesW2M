@@ -8,6 +8,7 @@ import { FormHeroesRoutingModule } from './form-heroes-routing.module'
 import { TranslateModule } from '@ngx-translate/core'
 import { UpperCaseTextModule } from 'src/app/directives/upper-case-text.module'
 import { MatButtonModule } from '@angular/material/button'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 const materialModules = [
   MatInputModule,
@@ -25,7 +26,8 @@ const materialModules = [
     ReactiveFormsModule,
     FormsModule,
     TranslateModule.forChild(),
-    UpperCaseTextModule
+    UpperCaseTextModule,
+    MatSnackBarModule
   ]
 })
 export class FormHeroesModule { }
