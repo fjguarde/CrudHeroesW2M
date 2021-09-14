@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class HeroesListComponent implements OnInit {
 
-  private horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   private verticalPosition: MatSnackBarVerticalPosition = 'top';
   private durationInSeconds = 3;
   public heroesData: Hero[] = [];

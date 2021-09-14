@@ -18,7 +18,7 @@ export class FormHeroesComponent implements OnInit {
   public heroId = '';
   public formHero: FormGroup;
   private regexIsALetter = '^[a-zA-Z]+$';
-  private horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   private verticalPosition: MatSnackBarVerticalPosition = 'top';
   private durationInSeconds = 3;
 
