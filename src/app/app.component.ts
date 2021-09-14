@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { LoadingService } from './services/loading.service'
@@ -8,20 +8,20 @@ import { LoadingService } from './services/loading.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked{
 
   public title = 'CrudHeroesW2M';
-  public loading: boolean = true;
   public loadingSubscription: Observable<boolean>
 
   constructor(
     private loadingService: LoadingService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private changeDetector: ChangeDetectorRef) {
       translate.setDefaultLang('en')
   }
-
-  ngOnInit() {
+  ngAfterViewChecked(): void {
     this.loadingSubscription = this.loadingService.loadingStatus
+    this.changeDetector.detectChanges()
   }
 
 }
