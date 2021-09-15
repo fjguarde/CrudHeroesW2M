@@ -8,6 +8,8 @@ import { ConfirmDialogComponent } from './confirm-dialog.component'
 describe('ConfirmDialogComponent', () => {
   let component: ConfirmDialogComponent
   let fixture: ComponentFixture<ConfirmDialogComponent>
+  let matDialogRef: MatDialogRefMock
+  const matDialogSpy = jasmine.createSpyObj('MatDialogRef', ['close', 'closeDialog'])
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,7 +19,10 @@ describe('ConfirmDialogComponent', () => {
         TranslateModule.forRoot()
       ],
       providers: [
-        {provide: MatDialogRef, useValue: {}}
+        {
+          provide: MatDialogRef,
+          useValue: matDialogSpy
+        },
       ]
     })
     .compileComponents()
@@ -26,10 +31,21 @@ describe('ConfirmDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfirmDialogComponent)
     component = fixture.componentInstance
+    matDialogRef = TestBed.inject(MatDialogRef)
     fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
-})
+
+  it('close should call dialogRef close method', () => {
+    component.close(true)
+    expect(matDialogSpy.close).toHaveBeenCalled()
+  })
+
+  })
+  export class MatDialogRefMock {
+    close(value = '') {
+    }
+  }
