@@ -67,13 +67,13 @@ describe('FormHeroesComponent', () => {
     expect(heroesFormGroup.value).toEqual(mockForm)
   })
 
-  it('getHeroeById has been called on init', () => {
+  it('getHeroeById should be called on init', () => {
     const spyHeroesService = spyOn(heroesService, 'getHeroeById').and.callFake(() => {return of([mockForm])})
     component.ngOnInit()
     expect(spyHeroesService).toHaveBeenCalled()
   })
 
-  it('updateHero should be call to heroesService updateHero', () => {
+  it('updateHero should call to heroesService updateHero', () => {
     const spyHeroesService = spyOn(heroesService, 'updateHero').and.callFake(() => {return of(mockForm)})
     component.onSubmitForm(mockForm)
     expect(spyHeroesService).toHaveBeenCalled()

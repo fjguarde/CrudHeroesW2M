@@ -57,7 +57,7 @@ describe('HeroesListComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('getHeroes has been called on init', () => {
+  it('getHeroes is called on init', () => {
     spyOn(service, 'getHeroes').and.callFake(() => {return of([heroMock])})
     component.ngOnInit()
     expect(service.getHeroes).toHaveBeenCalled()
