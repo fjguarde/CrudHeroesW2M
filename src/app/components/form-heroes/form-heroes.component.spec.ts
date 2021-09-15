@@ -6,11 +6,14 @@ import { TranslateModule } from '@ngx-translate/core'
 import { FormHeroesComponent } from './form-heroes.component'
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HeroesService } from '../../services/heroes.service'
+import { Observable, of } from 'rxjs'
 
 describe('FormHeroesComponent', () => {
   let component: FormHeroesComponent
   let fixture: ComponentFixture<FormHeroesComponent>
   let matSnackBar: MatSnackBar
+  let heroesService: HeroesService
 
   const mockForm = {
     id: '',
@@ -33,7 +36,8 @@ describe('FormHeroesComponent', () => {
         TranslateModule.forRoot(),
         ReactiveFormsModule],
       providers: [
-        {provider: MatSnackBar, useValue: matSnackBar}
+        {provider: MatSnackBar, useValue: matSnackBar},
+        {provider: HeroesService, useValue: heroesService}
       ]
     })
     .compileComponents()
@@ -43,6 +47,7 @@ describe('FormHeroesComponent', () => {
     fixture = TestBed.createComponent(FormHeroesComponent)
     component = fixture.componentInstance
     matSnackBar = TestBed.inject(MatSnackBar)
+    heroesService = TestBed.inject(HeroesService)
     fixture.detectChanges()
   })
 
@@ -60,5 +65,17 @@ describe('FormHeroesComponent', () => {
   it('Form should have initial values if not recive any data', () => {
     const heroesFormGroup = component.formHero
     expect(heroesFormGroup.value).toEqual(mockForm)
+  })
+
+  it('getHeroeById has been called on init', () => {
+    const spyHeroesService = spyOn(heroesService, 'getHeroeById').and.callFake(() => {return of([mockForm])})
+    component.ngOnInit()
+    expect(spyHeroesService).toHaveBeenCalled()
+  })
+
+  it('updateHero should be call to heroesService updateHero', () => {
+    const spyHeroesService = spyOn(heroesService, 'updateHero').and.callFake(() => {return of(mockForm)})
+    component.onSubmitForm(mockForm)
+    expect(spyHeroesService).toHaveBeenCalled()
   })
 })
